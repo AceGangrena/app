@@ -1,0 +1,32 @@
+<div>
+    <h2>Adicionar Nova Tarefa</h2>
+    <form [formGroup]="tarefaForm" (ngSubmit)="adicionarTarefa()">
+      <label>
+        Título:
+        <input type="text" formControlName="titulo">
+      </label>
+      <label>
+        Descrição:
+        <textarea formControlName="descricao"></textarea>
+      </label>
+      <label>
+        Data de Vencimento:
+        <input type="date" formControlName="dataVencimento">
+      </label>
+      <button type="submit">Adicionar Tarefa</button>
+    </form>
+    <div *ngIf="mensagem" class="mensagem">{{ mensagem }}</div>
+  </div>
+  
+  <hr>
+  
+  <div>
+    <h2>Lista de Tarefas</h2>
+    <ul>
+      <li *ngFor="let tarefa of tarefas$ | async">
+        <span>{{ tarefa.titulo }} - {{ tarefa.descricao }} - {{ tarefa.dataVencimento }}</span>
+        <button (click)="removerTarefa(tarefa.id)">Remover</button>
+      </li>
+    </ul>
+  </div>
+  
